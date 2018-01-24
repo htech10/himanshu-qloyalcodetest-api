@@ -41,7 +41,7 @@ https://join.slack.com/t/research-codinghat/shared_invite/enQtMzA0MDE1Mzk1MTIyLT
 
 
 
-## 2. How to setup this Postman collection Test Run on Jenkins
+## 2. Running postman collection using Jenkins
 
 2.1 Provide project name "lightbulb-api"
 
@@ -61,7 +61,7 @@ Password:	4AebuaANVuP
 
 Note: Please note that slack notification is from the localhost instance and AWS Instance is to be debugged 
 
-## 3. Running this Postman Collection on docker 
+## 3. Running Postman Collection on docker 
 
 3.1 Pull the newman image 
 
