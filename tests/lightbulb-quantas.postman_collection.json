@@ -1,0 +1,276 @@
+{
+	"info": {
+		"name": "lightbulb-quantas",
+		"_postman_id": "39c8477f-6063-6271-e92d-4b78fffbe61c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "folder1",
+			"description": "",
+			"item": [
+				{
+					"name": "lightbulb-on-with-valid-data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bb3e78c2-a0a6-44bb-a34c-57bf79b4f6e8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "80217e20-8d86-4ec1-b825-4df5c56f5a95",
+								"type": "text/javascript",
+								"exec": [
+									"/*var companies = pm.globals.get(\"companies\");*/",
+									"",
+									"tests[\"Verifying Response.code 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Verifying Response msg is 'Switch & custom power set successfully'\"] = jsonData.Result === \"Switch & custom power set successfully\";",
+									"",
+									"/*if(companies && companies.length >0) {",
+									"    postman.setNextRequest(\"https://qa-challenges-lightbulb.atlassian.io/api/allmethods/on\");    ",
+									"} else {",
+									"    postman.setNextRequest(null);",
+									"}*/",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "userId",
+								"value": "02355283-c42c-1766-bc99-5a15ba2056f6"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"power\" : {{bulbPower}}\n}"
+						},
+						"url": {
+							"raw": "https://qa-challenges-lightbulb.atlassian.io/api/allmethods/on",
+							"protocol": "https",
+							"host": [
+								"qa-challenges-lightbulb",
+								"atlassian",
+								"io"
+							],
+							"path": [
+								"api",
+								"allmethods",
+								"on"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "folder2",
+			"description": "",
+			"item": [
+				{
+					"name": "lightbulb-max-60",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "29d3b78b-be23-4093-873b-2624e97ed2ae",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "87caa268-7a66-42a6-88ec-e644c9550c62",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Verifying Expected Response 400 when power>60\"] = responseCode.code === 400;",
+									"tests[\"Verifying Expected Response tet contains 'Valid values 1-60'\"] = responseBody.has(\"Valid values 1-60\");",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "userId",
+								"value": "02355283-c42c-1766-bc99-5a15ba2056f6"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"power\" : 61\n}"
+						},
+						"url": {
+							"raw": "https://qa-challenges-lightbulb.atlassian.io/api/allmethods/on",
+							"protocol": "https",
+							"host": [
+								"qa-challenges-lightbulb",
+								"atlassian",
+								"io"
+							],
+							"path": [
+								"api",
+								"allmethods",
+								"on"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "lightbulb-off",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3691d796-3b8a-4d65-875e-868c49fc5315",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f001a5b7-93b4-4e95-95bb-8c20102d1b0d",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Verifying Response code - 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Verifying Response msg  - Switch set successfully\"] = jsonData.Result === \"Switch set successfully\";",
+									"/*tests[\"Verifying Response.msg  - Switch & custom power set successfully\"] = responseBody.has(\"Switch & custom power set successfully\");",
+									"",
+									"*/"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "userId",
+								"value": "02355283-c42c-1766-bc99-5a15ba2056f6"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"power\" : {{bulbPower}}\n}"
+						},
+						"url": {
+							"raw": "https://qa-challenges-lightbulb.atlassian.io/api/allmethods/off",
+							"protocol": "https",
+							"host": [
+								"qa-challenges-lightbulb",
+								"atlassian",
+								"io"
+							],
+							"path": [
+								"api",
+								"allmethods",
+								"off"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "lightbulb-on-default",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3691d796-3b8a-4d65-875e-868c49fc5315",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9b2bb57-666b-4cf1-af14-cb8254610f39",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Verifying Response code - 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Verifying Response msg is Switch set successfully\"] = jsonData.Result === \"Switch set successfully\";",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "userId",
+								"value": "02355283-c42c-1766-bc99-5a15ba2056f6"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://qa-challenges-lightbulb.atlassian.io/api/allmethods/off",
+							"protocol": "https",
+							"host": [
+								"qa-challenges-lightbulb",
+								"atlassian",
+								"io"
+							],
+							"path": [
+								"api",
+								"allmethods",
+								"off"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
